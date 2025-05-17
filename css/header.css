@@ -1,0 +1,21 @@
+header {
+    /* background-color: rgba(201, 6, 207, 0.699); */
+    background-image: url('../img/kot.jpg');
+    height: 30rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.ag-header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 600px) {
+    header {
+        height: 60rem;
+    }
+}
