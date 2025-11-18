@@ -1,8 +1,7 @@
-header.css
 header {
     background: linear-gradient(45deg, orange 30%, violet);
-    background-image: url('../img/goods.jpg');
-    height: 30rem;
+    background-image: url('img/pool.jpg');
+    height: 70vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
