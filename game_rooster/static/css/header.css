@@ -1,6 +1,6 @@
 header {
-    background: linear-gradient(45deg, orange 30%, violet);
-    background-image: url('img/pool.jpg');
+    background: linear-gradient(45deg, rgb(0, 0, 0) 30%, violet);
+    background-image: url('../img/pool.jpg');
     height: 70vh;
     background-repeat: no-repeat;
     background-size: cover;

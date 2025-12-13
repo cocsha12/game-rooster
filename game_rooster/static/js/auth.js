@@ -1,25 +1,25 @@
-$('auth-button').click(
+$('#auth-button').click(
     function() {
         let email = $('#email').val();
-        let password = $('#password')
+        let password = $('#password').val();
         const CSRF = $('[name=csrfmiddlewaretoken]').val();
-
+        
         if(!email) {
-            alert('введите адрес электронной почты!')
+            alert('Введите адрес электронной почты!');
         }
 
         if(!password) {
-            alert('введите пороль');
+            alert('Введите пароль!');
         }
 
         let userData = {
             'email' : email,
             'password' : password,
-            'csrfmiddlewaretoken' : CSRF
+            'csrfmiddlewaretoken': CSRF
         }
 
         $.ajax({
-            uri: '/auth/',
+            url: '/auth/',
             type: 'POST',
             dataType: 'json',
             data: userData,

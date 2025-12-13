@@ -1,0 +1,10 @@
+        {% csrf_token %}
+        <main class='auth'>
+            <label for="email" class="form-label">электронная почта</label>
+            <input type='email' class="form-control" id="email">введите почту
+            <label for="password" class="form-label" id="password-label"></label>
+            <input type='password' class="form-control" id="password">введите пароль
+            <label for="password2" class="form-label" id="password2-label"></label>
+            <input type='password2' class="form-control" id="password2">повторите пароль
+            <input type="button" class="btn btn-dark" id="auth-button" value="регестрация">
+        </main>
