@@ -1,9 +1,22 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib.auth import, logout login
 from django.http import JsonResponse
 
+
 def index(request):
-    return render(request, 'index.html')
+    try:
+        context = { 'username' : request.user.username }
+        return render(request, 'index.html', context)
+    except AttributeError as e:
+        return render(request, 'index.html')
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'status': 'success'})
 
 
 
@@ -30,7 +43,9 @@ def reg(request):
 
         user = User.objects.create_user(username, email, password)
 
-        return JsonResponse({'status': 'success', 'message': 'Everything OK'})
+        login(request, user)
+
+        return JsonResponse({'status': 'success'})
 
 
     return render(request, 'reg.html')
