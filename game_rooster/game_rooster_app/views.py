@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import, logout login
+from django.contrib.auth import logout, login, authenticate
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -10,23 +11,21 @@ def index(request):
         return render(request, 'index.html', context)
     except AttributeError as e:
         return render(request, 'index.html')
-from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
-def logout_view(request):
-    if request.method == 'POST':
-        logout(request)
-        return JsonResponse({'status': 'success'})
-
 
 
 def auth(request):
-
     if request.method == 'POST':
-        email = request.POST.get('email')
+        username = request.POST.get('email')
         password = request.POST.get('password')
         # \n (терминальный n) - это перенос строки
-        print('Почта: '+ email, '\n', 'Пароль: '+ password, sep='')
+        print('логин: ', username, '\n', 'Пароль: ', password, sep='')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+             login(request, user)
+             JsonResponse({'status' : 'success'})
+        else:
+            JsonResponse({'status' : 'error'})
     return render(request, 'auth.html')
 
 def reg(request):
@@ -50,5 +49,7 @@ def reg(request):
 
     return render(request, 'reg.html')
 
-    
+def logout_view(request): 
+        logout(request)
+        return redirect('index')
 
