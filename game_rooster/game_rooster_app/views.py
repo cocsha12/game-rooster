@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .models import Service
 
 
 def index(request):
@@ -52,4 +53,9 @@ def reg(request):
 def logout_view(request): 
         logout(request)
         return redirect('index')
+
+def service_template(request, id):
+     service = Service.objects.get(id = id)
+     context = { 'title' : service.service_title }
+     return render(request, 'service-template.html', context)
 
